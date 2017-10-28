@@ -15,58 +15,86 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         print("Блок Easy. Задание 1")
-        let myName = "Oleg"
-        print("Number characters of the \(myName) is \(getCountOfCaracters(str: myName))")
+        eraseAllElementsOfArray()
         print("=============================================")
 
         print("Блок Easy. Задание 2")
-        print("The username for first name Oleg and second name Yaroshenko is \(getUserName(firstName: "Oleg", secondName: "Yaroshenko"))")
+        addTwoArray()
         print("=============================================")
 
         print("Блок Easy. Задание 3")
-        let name = "Олег Федорович"
-        print("The sex of the human \(name) is \(getSexOfHuman(name: name))")
+        let array1 = ["Oleg","Tamara","Sergey","Lena"]
+        printAllElementsOfArray(array: array1)
         print("=============================================")
 
-        print("Блок Hard. Задание 1")
-        let userName = "OlegYaroshenko"
-        print("The name of the \(userName) is \(getParsedName(name: userName))")
+        print("Блок Easy. Задание 4")
+        let array2 = ["Oleg","Tamara","Sergey","Lena"]
+        print("Source array is \(array2)")
+        print("Transform array is \(transformArray(array: array2))")
         print("=============================================")
 
-        print("Блок Hard. Задание 2")
-        let normalString = "OlegYaroshenko"
-        print("The reversed string of the \(normalString) is \(getReversedString(incomingString: normalString))")
-        print("=============================================")
-
-        print("Блок Hard. Задание 3")
-        print("The formated number of the 4500789 is \(getFormatedNumber(number: 4500789))")
-        print("=============================================")
-
-        print("Блок Hard. Задание 4")
-        let password = "SECURI2Y WoRD%"
-        checkPasswordComplicated(password: password)
-        print("=============================================")
     }
 
 
     /// Блок Easy.
-    //Задание 1. Создать строку со своим именем. Написать метод который получает это имя и возвращает кол-во символов в строке с вашим именем. Возвращенное значение показать в консоль
+    //Задание 1. Создать массив со значениями типа Int. Выполнить удаление всех элементов массива.
     
-    func getCountOfCaracters(str: String) -> Int {
-        return str.count
+    func eraseAllElementsOfArray() {
+        var anyArray = [1, 2, 3, 4]
+        print("Full array \(anyArray)")
+        anyArray.removeAll()
+        print("Empty array \(anyArray)")
     }
 
     /// Блок Easy.
-    //Задание 2. Написать метод который принимает 2 слова, например имя и фамилию, возвращает юзернейм который имеет буквы нижнего регистра и разделяет имя и фамилию символом “_”
+    //Задание 2. Создать 2 массива со значениями типа Int. Сделать соединение данных массивов. Результат вывести в консоль.
     
-    func getUserName(firstName: String, secondName: String) -> String {
-        let userName = firstName + "_" + secondName
-        return userName.lowercased()
+    func addTwoArray() {
+        let firstArray = [1, 2, 3, 4]
+        let secondArray = [10, 20, 30, 40]
+        print("First array \(firstArray)")
+        print("Second array \(secondArray)")
+        let addArray = firstArray + secondArray
+        print("Add array \(addArray)")
     }
 
     /// Блок Easy.
-    //Задание 3. Создать строку с именем и своим отчеством. Создать метод который проверит его на окончание “ич/на”. Выводит “М” или “Ж” в зависимости от окончания. Также учитывать регистр букв, то есть ИЧ или Ич или На и тд.
-//    Подсказка: в классе написан метод который позволяет проверить на суффикс или префикс, найдите и используйте его
+    //Задание 3. Создать массив с любыми значениями типа строка. Создать метод который будет принимать как аргумент массив. Метод должен выводить в консоль элементы массива (по одному в одной строке)
+    
+    func printAllElementsOfArray(array: Array<String>) {
+        for element in array {
+            print(element)
+        }
+    }
+    
+    /// Блок Easy.
+    //Задание 4. Создать массив с любыми значениями типа строка. Создать метод который будет принимать как аргумент массив. Метод должен возвращать массив который состоит из первого и последнего элемента массива, который был параметром
+    
+    func transformArray(array: Array<String>) -> Array<String> {
+        let newArray = [array[array.startIndex] , array[array.endIndex]]
+        return newArray
+    }
+
+    /// Блок Easy.
+    //Задание 5. Создать словарь в котором ключ будет Строкой а значение Целым. Например ключ - имя, значение - возраст. Должно быть 3 элемента (3 пары).
+    //Добавить в данный словарь еще 2 новых элемента.
+
+    
+    func getSexOfHuman(name: String) -> Character {
+        if name.hasSuffix("ич") || name.hasSuffix("ИЧ") || name.hasSuffix("Ич") || name.hasSuffix("иЧ") {
+            return "М"
+        } else if name.hasSuffix("на") || name.hasSuffix("НА") || name.hasSuffix("На") || name.hasSuffix("нА") {
+            return "Ж"
+        } else {
+            return "?"
+        }
+        
+    }
+    
+    /// Блок Easy.
+    //Задание 6. Создать словарь в котором ключ будет Строкой а значение Целым. Например ключ - имя, значение - возраст. Должно быть 3 элемента (3 пары).
+    //Создать метод который будет иметь 2 параметра: словарь (типа “Строка : Целое”) и ключ типа Строка. Данный метод должен удалить из полученного (как первый аргумент) словаря элемент ключ которого был передан (как второй аргумент).
+
     
     func getSexOfHuman(name: String) -> Character {
         if name.hasSuffix("ич") || name.hasSuffix("ИЧ") || name.hasSuffix("Ич") || name.hasSuffix("иЧ") {
