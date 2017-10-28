@@ -32,6 +32,35 @@ class ViewController: UIViewController {
         print("Source array is \(array2)")
         print("Transform array is \(transformArray(array: array2))")
         print("=============================================")
+        
+        print("Блок Easy. Задание 5")
+        changeDictionaryOne()
+        print("=============================================")
+
+        print("Блок Easy. Задание 6")
+        let ages = ["John" : 18, "Eric" : 32, "Liza" : 21]
+        print("Source dictionary is \(ages)")
+        removeElementFromDictionary(dictSource: ages, key: "Liza")
+        print("=============================================")
+
+        print("Блок Hard. Задание 1")
+        let array3 = ["Oleg","Tamara","Sergey","Lena"]
+        print("Source array is \(array3)")
+        if isStringInArray(arraySource: array3, value: "Lena") {
+            print("String Lena is present")
+        } else {
+            print("String Lena is absent")
+        }
+        print("=============================================")
+        
+        print("Блок Hard. Задание 2")
+        let agesTwo = ["John" : 18, "Eric" : 32, "Liza" : 21, "Mike" : 10]
+        print("Source dictionary is \(agesTwo)")
+        print("Keys of dictionary are ")
+        printAllKeysOfDictionary(dictSource: agesTwo)
+        print("Values of dictionary are ")
+        printAllValuesOfDictionary(dictSource: agesTwo)
+        print("=============================================")
 
     }
 
@@ -71,81 +100,65 @@ class ViewController: UIViewController {
     //Задание 4. Создать массив с любыми значениями типа строка. Создать метод который будет принимать как аргумент массив. Метод должен возвращать массив который состоит из первого и последнего элемента массива, который был параметром
     
     func transformArray(array: Array<String>) -> Array<String> {
-        let newArray = [array[array.startIndex] , array[array.endIndex]]
+        let firstElement = array[array.startIndex]
+        let lastElement = array[array.endIndex-1]
+        let newArray = [firstElement, lastElement]
         return newArray
     }
 
     /// Блок Easy.
     //Задание 5. Создать словарь в котором ключ будет Строкой а значение Целым. Например ключ - имя, значение - возраст. Должно быть 3 элемента (3 пары).
     //Добавить в данный словарь еще 2 новых элемента.
-
     
-    func getSexOfHuman(name: String) -> Character {
-        if name.hasSuffix("ич") || name.hasSuffix("ИЧ") || name.hasSuffix("Ич") || name.hasSuffix("иЧ") {
-            return "М"
-        } else if name.hasSuffix("на") || name.hasSuffix("НА") || name.hasSuffix("На") || name.hasSuffix("нА") {
-            return "Ж"
-        } else {
-            return "?"
-        }
-        
+    func changeDictionaryOne() {
+        var ages = ["John" : 18, "Eric" : 32, "Liza" : 21]
+        print("Source dictionary is \(ages)")
+        ages["Roman"] = 43
+        ages["Oleg"] = 40
+        print("Result dictionary is \(ages)")
     }
     
     /// Блок Easy.
     //Задание 6. Создать словарь в котором ключ будет Строкой а значение Целым. Например ключ - имя, значение - возраст. Должно быть 3 элемента (3 пары).
     //Создать метод который будет иметь 2 параметра: словарь (типа “Строка : Целое”) и ключ типа Строка. Данный метод должен удалить из полученного (как первый аргумент) словаря элемент ключ которого был передан (как второй аргумент).
-
     
-    func getSexOfHuman(name: String) -> Character {
-        if name.hasSuffix("ич") || name.hasSuffix("ИЧ") || name.hasSuffix("Ич") || name.hasSuffix("иЧ") {
-            return "М"
-        } else if name.hasSuffix("на") || name.hasSuffix("НА") || name.hasSuffix("На") || name.hasSuffix("нА") {
-            return "Ж"
-        } else {
-            return "?"
-        }
-        
+    func removeElementFromDictionary(dictSource: Dictionary<String, Int>, key: String) {
+        var dictResult = dictSource
+        dictResult.removeValue(forKey: key)
+        print("Complete dictionary is \(dictResult)")
+
     }
 
     /// Блок Hard.
-    //Задание 1. Создать метод который будет принимать строку где слитно написано Ваши ИмяФамилия “TungFam" и возвращать строку,  где они будут разделены пробелом
-    //    input = “TungFam”
-    //    output = “Tung Fam"
-    //    Сложность задачи в том, что имя может быть любое. Например:
-    //    Введя “ArtemPigor” должно вернуть “Artem Pigor”
-    //    Введя “AnnaSecure” должно вернуть “Anna Secure”
-    //    Введя “BlaCar” должно вернуть “Bla Car”
-    //    То есть алгоритм разбивает два слова которые начинаются на большую букву
+    //Задание 1. Создать метод который принимает 2 аргумента: массив строк и просто строку. Метод возвращает true или false в зависимости есть ли данный элемент (тот второй аргумент, который строка) в массиве (тот первый аргумент, который массив строк).
+    //например массив
+    //let array = [“one”, “two”]
+    //и если передать в этот метод “one“ то должно вернуть true
+    //а если передать “three” то должно вернуть false
     
-    func getParsedName(name: String) -> String {
-        var parsedName = name
-        var indexOfBigLetter = name.endIndex
-        for i in name.indices {
-            let letter = String(name[i])
-            if letter.uppercased() == letter, i != name.startIndex {
-                indexOfBigLetter = i
-                break
-            }
-        }
-        parsedName.insert(" ", at: indexOfBigLetter)
-        return parsedName
+    func isStringInArray(arraySource: Array<String>, value: String) -> Bool {
+         return arraySource.contains(value)
     }
 
-    //Задание 2. Создать метод который принимает как аргумент строку. Метод выводит строку зеркально, например Ось -> ьсО, Привет -> тевирП. не используя reverse (сделать алгоритм самому посимвольно)
+    //Задание 2. метод который выведет все ключи словаря
     
-    func getReversedString(incomingString: String) -> String {
-        var reversedString = ""
-        for c in incomingString {
-            let firstIndex = reversedString.startIndex
-            reversedString.insert(c, at: firstIndex)
+    func printAllKeysOfDictionary(dictSource: Dictionary<String, Int>) {
+        for key in dictSource.keys {
+            print(key)
         }
-        return reversedString
     }
 
-    //Задание 3. добавить запятые в строку как их расставляет калькулятор
-    // 1234567 -> 1,234,567
-    // 12345 -> 12,345
-    // (не использовать встроенный метод для применения формата)
+    //метод который выведет все значения словаря
+
+    func printAllValuesOfDictionary(dictSource: Dictionary<String, Int>) {
+        for value in dictSource.values {
+            print(value)
+        }
+    }
+
+    //Задание 3. сортировка массива не встроенным методом по возрастанию + удалить дубликаты
+    //Например задается массив [3, 6, 1, 2, 2, 6, 13, 77, 36]
+    //Результат должен быть [1, 2, 3, 6, 13, 36, 77]
     
     func getFormatedNumber(number: Int) -> String {
         let numberString = String(number)
@@ -161,18 +174,9 @@ class ViewController: UIViewController {
         return formatedNumber
     }
 
-    //Задание 4. проверить пароль на надежность от 1 до 5
-    //    a) если пароль содержит числа +1
-    //    b) символы верхнего регистра +1
-    //    c) символы нижнего регистра +1
-    //    d) спец символы +1
-    //    e) если длина пароля 8 или более символов +1
-    //
-    //    пример:
-    //    123456 - 1 a)
-    //    qwertyui - 1 c)
-    //    12345qwerty - 2 a) c)
-    //    32556reWDr - 3 a) b) c)
+    //Задание 4. Во ViewDidLoad создать словарь внутри которого будет 2 словаря (ключ - строка, значение - словарь). С любыми данными. Их мы будем передавать в метод, который напишем.
+    //Создать метод который будет принимать как параметры: словарь (такого типа как выше) и строку. Данный метод должен вернуть значение которое хранится внутри элемента ключ которого был передан как аргумент.
+
     
     func checkPasswordComplicated(password: String) {
         var isDigitPresent = false
