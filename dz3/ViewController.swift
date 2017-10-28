@@ -51,12 +51,14 @@ class ViewController: UIViewController {
 
     /// Блок Easy.
     //Задание 1. Создать строку со своим именем. Написать метод который получает это имя и возвращает кол-во символов в строке с вашим именем. Возвращенное значение показать в консоль
+    
     func getCountOfCaracters(str: String) -> Int {
         return str.count
     }
 
     /// Блок Easy.
     //Задание 2. Написать метод который принимает 2 слова, например имя и фамилию, возвращает юзернейм который имеет буквы нижнего регистра и разделяет имя и фамилию символом “_”
+    
     func getUserName(firstName: String, secondName: String) -> String {
         let userName = firstName + "_" + secondName
         return userName.lowercased()
@@ -65,6 +67,7 @@ class ViewController: UIViewController {
     /// Блок Easy.
     //Задание 3. Создать строку с именем и своим отчеством. Создать метод который проверит его на окончание “ич/на”. Выводит “М” или “Ж” в зависимости от окончания. Также учитывать регистр букв, то есть ИЧ или Ич или На и тд.
 //    Подсказка: в классе написан метод который позволяет проверить на суффикс или префикс, найдите и используйте его
+    
     func getSexOfHuman(name: String) -> Character {
         if name.hasSuffix("ич") || name.hasSuffix("ИЧ") || name.hasSuffix("Ич") || name.hasSuffix("иЧ") {
             return "М"
@@ -85,6 +88,7 @@ class ViewController: UIViewController {
     //    Введя “AnnaSecure” должно вернуть “Anna Secure”
     //    Введя “BlaCar” должно вернуть “Bla Car”
     //    То есть алгоритм разбивает два слова которые начинаются на большую букву
+    
     func getParsedName(name: String) -> String {
         var parsedName = name
         var indexOfBigLetter = name.endIndex
@@ -100,6 +104,7 @@ class ViewController: UIViewController {
     }
 
     //Задание 2. Создать метод который принимает как аргумент строку. Метод выводит строку зеркально, например Ось -> ьсО, Привет -> тевирП. не используя reverse (сделать алгоритм самому посимвольно)
+    
     func getReversedString(incomingString: String) -> String {
         var reversedString = ""
         for c in incomingString {
@@ -113,6 +118,7 @@ class ViewController: UIViewController {
     // 1234567 -> 1,234,567
     // 12345 -> 12,345
     // (не использовать встроенный метод для применения формата)
+    
     func getFormatedNumber(number: Int) -> String {
         let numberString = String(number)
         var formatedNumber = ""
@@ -139,6 +145,7 @@ class ViewController: UIViewController {
     //    qwertyui - 1 c)
     //    12345qwerty - 2 a) c)
     //    32556reWDr - 3 a) b) c)
+    
     func checkPasswordComplicated(password: String) {
         var isDigitPresent = false
         var isUperLetterPresent = false
