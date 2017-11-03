@@ -160,18 +160,18 @@ class ViewController: UIViewController {
     //Например задается массив [3, 6, 1, 2, 2, 6, 13, 77, 36]
     //Результат должен быть [1, 2, 3, 6, 13, 36, 77]
     
-    func getFormatedNumber(number: Int) -> String {
-        let numberString = String(number)
-        var formatedNumber = ""
-        var index = numberString.endIndex
-        for i in 1...numberString.count {
-            index = numberString.index(before: index)
-            formatedNumber.insert(numberString[index], at: formatedNumber.startIndex)
-            if i % 3 == 0 {
-                formatedNumber.insert(",", at: formatedNumber.startIndex)
-            }
-        }
-        return formatedNumber
+    func getFormatedNumber(arrayIn: Array<Int>) -> Array<Int> {
+        let arrayOut = arrayIn
+//        var formatedNumber = ""
+//        var index = numberString.endIndex
+//        for i in 1...numberString.count {
+//            index = numberString.index(before: index)
+//            formatedNumber.insert(numberString[index], at: formatedNumber.startIndex)
+//            if i % 3 == 0 {
+//                formatedNumber.insert(",", at: formatedNumber.startIndex)
+//            }
+//        }
+        return arrayOut
     }
 
     //Задание 4. Во ViewDidLoad создать словарь внутри которого будет 2 словаря (ключ - строка, значение - словарь). С любыми данными. Их мы будем передавать в метод, который напишем.
