@@ -160,7 +160,7 @@ class ViewController: UIViewController {
     //Например задается массив [3, 6, 1, 2, 2, 6, 13, 77, 36]
     //Результат должен быть [1, 2, 3, 6, 13, 36, 77]
     
-    func getFormatedNumber(arrayIn: Array<Int>) -> Array<Int> {
+    func sortArray(arrayIn: Array<Int>) -> Array<Int> {
         let arrayOut = arrayIn
 //        var formatedNumber = ""
 //        var index = numberString.endIndex
