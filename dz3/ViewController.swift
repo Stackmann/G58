@@ -68,6 +68,14 @@ class ViewController: UIViewController {
         print("Sorted array is \(sortArray(arrayIn: unsortedArray))")
         print("=============================================")
 
+        print("Блок Hard. Задание 4")
+        let leftDictionary = ["Elton":"John","Elvis":"Presley","Bob":"Dilan","Nick":"Jagger"]
+        let rightDictionary = ["apple":"fruit","melon":"fruit","egplant":"vegetable","pea":"fruit"]
+        let megaDictionary = ["left" : leftDictionary, "right" : rightDictionary]
+        print("Source dictionary is \(megaDictionary)")
+        print("Value for key \"egplant\" is \(findValueInMegaDictionary(key: "egplant", dict: megaDictionary))")
+        print("=============================================")
+
     }
 
 
@@ -212,48 +220,14 @@ class ViewController: UIViewController {
     //Создать метод который будет принимать как параметры: словарь (такого типа как выше) и строку. Данный метод должен вернуть значение которое хранится внутри элемента ключ которого был передан как аргумент.
 
     
-    func checkPasswordComplicated(password: String) {
-        var isDigitPresent = false
-        var isUperLetterPresent = false
-        var isLowerLetterPresent = false
-        var isSpecialCharacterPresent = false
-        var countCheckOK = 0
-        var resultDescription = ""
-        let decimalString = "0123456789"
-        let specialSymbolString = "\\\'\"`˜!@#№$%ˆ&*()-=+/[]{}.,:;?<>"
-        for c in password {
-            let letter = String(c)
-            if isDigitPresent == false, decimalString.contains(c) {
-                countCheckOK += 1
-                resultDescription += " a)"
-                isDigitPresent = true
-            }
-            if isUperLetterPresent == false, letter.uppercased() == letter, c != "\u{0020}" {
-                countCheckOK += 1
-                resultDescription += " b)"
-                isUperLetterPresent = true
-            }
-            if isLowerLetterPresent == false, letter.lowercased() == letter, c != "\u{0020}" {
-                isLowerLetterPresent = true
-                countCheckOK += 1
-                resultDescription += " c)"
-            }
-            if isSpecialCharacterPresent == false, specialSymbolString.contains(c) {
-                countCheckOK += 1
-                resultDescription += " d)"
-                isSpecialCharacterPresent = true
+    func findValueInMegaDictionary(key: String, dict: Dictionary<String, Dictionary<String, String>>) -> String {
+        for (_, curDictionary) in dict {
+            if let valueByKey = curDictionary[key] {
+                return valueByKey
             }
         }
-        if password.count >= 8 {
-            countCheckOK += 1
-            resultDescription += " e)"
-        }
-        if countCheckOK == 0 {
-            print("The password is empty!!!")
-        } else {
-            print("\(password) - \(countCheckOK)\(resultDescription)")
-        }
-    }
+        return "Error - was not found!"
+     }
 
 }
 
