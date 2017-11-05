@@ -62,6 +62,12 @@ class ViewController: UIViewController {
         printAllValuesOfDictionary(dictSource: agesTwo)
         print("=============================================")
 
+        print("Блок Hard. Задание 3")
+        let unsortedArray = [13,8,6,1,4,2,7,11,5,9,3]
+        print("Source array is \(unsortedArray)")
+        print("Sorted array is \(sortArray(arrayIn: unsortedArray))")
+        print("=============================================")
+
     }
 
 
@@ -161,16 +167,33 @@ class ViewController: UIViewController {
     //Результат должен быть [1, 2, 3, 6, 13, 36, 77]
     
     func sortArray(arrayIn: Array<Int>) -> Array<Int> {
-        let arrayOut = arrayIn
-//        var formatedNumber = ""
-//        var index = numberString.endIndex
-//        for i in 1...numberString.count {
-//            index = numberString.index(before: index)
-//            formatedNumber.insert(numberString[index], at: formatedNumber.startIndex)
-//            if i % 3 == 0 {
-//                formatedNumber.insert(",", at: formatedNumber.startIndex)
-//            }
-//        }
+        var arrayOut = arrayIn
+        var isSwapHappend = true
+        while isSwapHappend {
+            isSwapHappend = false
+            
+            var rangeIndex = arrayOut.startIndex
+            while rangeIndex + 1 < arrayOut.count {
+                if arrayOut[rangeIndex] > arrayOut[rangeIndex + 1] {
+                    let tempVar = arrayOut[rangeIndex]
+                    arrayOut[rangeIndex] = arrayOut[rangeIndex + 1]
+                    arrayOut[rangeIndex + 1] = tempVar
+                    isSwapHappend = true
+                }
+                rangeIndex += 2
+            }
+            
+            rangeIndex = (arrayOut.count % 2) == 0 ? arrayOut.endIndex - 2 : arrayOut.endIndex - 1
+            while rangeIndex - 1 >= arrayOut.startIndex {
+                if arrayOut[rangeIndex - 1] > arrayOut[rangeIndex] {
+                    let tempVar = arrayOut[rangeIndex - 1]
+                    arrayOut[rangeIndex - 1] = arrayOut[rangeIndex]
+                    arrayOut[rangeIndex] = tempVar
+                    isSwapHappend = true
+                }
+                rangeIndex -= 2
+            }
+        }
         return arrayOut
     }
 
