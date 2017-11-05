@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         print("=============================================")
 
         print("Блок Hard. Задание 3")
-        let unsortedArray = [13,8,6,1,4,2,7,11,5,9,3]
+        let unsortedArray = [13,8,6,1,4,2,7,6,11,5,9,3,6]
         print("Source array is \(unsortedArray)")
         print("Sorted array is \(sortArray(arrayIn: unsortedArray))")
         print("=============================================")
@@ -172,6 +172,7 @@ class ViewController: UIViewController {
         while isSwapHappend {
             isSwapHappend = false
             
+            //forward iteration with even index
             var rangeIndex = arrayOut.startIndex
             while rangeIndex + 1 < arrayOut.count {
                 if arrayOut[rangeIndex] > arrayOut[rangeIndex + 1] {
@@ -183,6 +184,7 @@ class ViewController: UIViewController {
                 rangeIndex += 2
             }
             
+            //backward iteration with odd index
             rangeIndex = (arrayOut.count % 2) == 0 ? arrayOut.endIndex - 2 : arrayOut.endIndex - 1
             while rangeIndex - 1 >= arrayOut.startIndex {
                 if arrayOut[rangeIndex - 1] > arrayOut[rangeIndex] {
@@ -193,6 +195,15 @@ class ViewController: UIViewController {
                 }
                 rangeIndex -= 2
             }
+        }
+        //remove all dublicates
+        var rangeIndex = arrayOut.startIndex
+        while rangeIndex < arrayOut.endIndex {
+            if rangeIndex + 1 < arrayOut.endIndex, arrayOut[rangeIndex] == arrayOut[rangeIndex + 1] {
+                arrayOut.remove(at: rangeIndex)
+                rangeIndex -= 1
+            }
+            rangeIndex += 1
         }
         return arrayOut
     }
