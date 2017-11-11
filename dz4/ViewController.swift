@@ -43,5 +43,16 @@ class ViewController: UIViewController {
         volumeValue.text = String(tv.changeVolume(direction: .lower))
     }
     
+    @IBAction func channelDown(_ sender: UIButton) {
+        tv.changeChannelDown()
+        channel.text = tv.channel
+    }
+    
+    
+    @IBAction func channelUp(_ sender: UIButton) {
+        tv.changeChannelUp()
+        channel.text = tv.channel
+    }
+    
 }
 
